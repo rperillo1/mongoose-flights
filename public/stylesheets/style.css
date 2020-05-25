@@ -1,8 +1,25 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+section {
+  padding-left: 50px;
 }
 
 a {
   color: #00B7FF;
+}
+
+h1 {
+  padding: 20px;
+  text-align: center;
+}
+
+table, th, td{
+  text-align: center;
+  border: 1px solid black;
+  padding: 4px;
+}
+
+.red {
+  color: red;
 }

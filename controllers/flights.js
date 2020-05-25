@@ -10,16 +10,15 @@ module.exports = {
 
 
 function deleteFlight(req, res) {
-    Flight.findByIdAndRemove(req.params.id, req.body, function(err, flight){
+    Flight.findByIdAndRemove(req.params.id, req.body, function (err, flight) {
         if (err) return res.redirect('/flights/show');
-        res.redirect('/flights/');
-    })
-}
+        res.redirect('/flights');
+    });
+};
 
 
 function show(req, res) {
-    Flight.findById(req.params.id, function(err, flight) {
-        console.log("flight", flight)
+    Flight.findById(req.params.id, function (err, flight) {
         res.render(`flights/show`, {
             flight,
             title: 'Current Flight'
@@ -33,8 +32,8 @@ function create(req, res) {
     flight.save(function (err) {
         if (err) return res.redirect('/flights/new')
         res.redirect('/flights')
-    })
-}
+    });
+};
 
 
 function newFlight(req, res) {
@@ -44,8 +43,8 @@ function newFlight(req, res) {
     res.render('flights/new', {
         title: 'New Flight',
         destDate
-    })
-}
+    });
+};
 
 
 function index(req, res) {
