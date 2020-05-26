@@ -29,36 +29,51 @@
             <th>ARRIVAL</th>
         </tr>
         <% flight.destinations.forEach(f => { %>
-            <tr>
-                <td> <%= f.airport %> </td>
-                <td> <%= f.arrival %> </td>
-                <td>
-                    <form action="/flights/<%=f._id%>/destinations?_method=DELETE" method="POST">
-                        <button type='submit'>Delete Destination</button>
-                    </form>
-                </td>
-            </tr>
-            <% }) %>
-        </table>
-        
+        <tr>
+            <td> <%= f.airport %> </td>
+            <td> <%= f.arrival %> </td>
+            <td>
+                <form action="/flights/<%=f._id%>/destinations?_method=DELETE" method="POST">
+                    <button type='submit'>Delete Destination</button>
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+    </table>
+
+    <br>
+    <br>
+    <h3>Enter Your Stops:</h3>
+    <form action="/flights/<%=flight._id%>" method="POST">
+        <label for="airport">Airport:</label>
+        <select name="airport">
+            <option value="AUS" <%- flight.airport === 'AUS' ? 'disabled' : '' %>>AUS</option>
+            <option value="DFW" <%- flight.airport === 'DFW' ? 'disabled' : '' %>>DFW</option>
+            <option value="DEN" <%- flight.airport === 'DEN' ? 'disabled' : '' %>>DEN</option>
+            <option value="LAX" <%- flight.airport === 'LAX' ? 'disabled' : '' %>>LAX</option>
+            <option value="SAN" <%- flight.airport === 'SAN' ? 'disabled' : '' %>>SAN</option>
+        </select>
         <br>
-        <br>
-        <h3>Enter Your Stops:</h3>
-        <form action="/flights/<%=flight._id%>" method="POST">
-            <label for="airport">Airport:</label>
-            <select name="airport">
-                <option value="AUS" <%- flight.airport === 'AUS' ? 'disabled' : '' %>>AUS</option>
-                <option value="DFW" <%- flight.airport === 'DFW' ? 'disabled' : '' %>>DFW</option>
-                <option value="DEN" <%- flight.airport === 'DEN' ? 'disabled' : '' %>>DEN</option>
-                <option value="LAX" <%- flight.airport === 'LAX' ? 'disabled' : '' %>>LAX</option>
-                <option value="SAN" <%- flight.airport === 'SAN' ? 'disabled' : '' %>>SAN</option>
-            </select>
-            <br>
-            <label for="arrival">Arrival Time:</label>
-            <input type="datetime-local" name="arrival" required>
-            <button type="submit">Add Destination</button>
-        </form>
+        <label for="arrival">Arrival Time:</label>
+        <input type="datetime-local" name="arrival" required>
+        <button type="submit">Add Destination</button>
+    </form>
+    <br>
+    <br>
+    <h3>Tickets: <small><a href="/flights/<%=flight._id%>/tickets/new">Add Ticket</a></small></h3>
+    <table>
+        <tr>
+            <th>SEAT</th>
+            <th>PRICE</th>
+        </tr>
+        <% tickets.forEach(t => { %>
+        <tr>
+            <td><%=t.seat%></td>
+            <td><%=t.price%></td>
+        </tr>
+        <% }) %>
+    </table>
 
 </section>
-        
+
 <%- include('../partials/footer') %>
